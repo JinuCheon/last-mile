@@ -9,8 +9,7 @@ class FinalMileDeliveryServiceTest : StringSpec({
     val sut = FinalMileDeliveryService(repository)
 
     "고객의 집 앞에 배송이 완료된 경우, Delivery 의 status 를 배송완료 상태로 변경한다." {
-        val deliveryId = 1L
-        repository.save(Delivery(deliveryId, DeliveryStatus.PICKED_UP))
+        val deliveryId = createDelivery(repository)
 
         sut.complete(deliveryId)
 
@@ -18,3 +17,9 @@ class FinalMileDeliveryServiceTest : StringSpec({
         delivery.status shouldBe DeliveryStatus.DELIVERED
     }
 })
+
+private fun createDelivery(repository: DeliveryMemoryRepository): Long {
+    val deliveryId = 1L
+    repository.save(Delivery(deliveryId, DeliveryStatus.PICKED_UP))
+    return deliveryId
+}
