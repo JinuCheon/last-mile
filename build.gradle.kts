@@ -37,6 +37,12 @@ dependencies {
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	testImplementation(platform("io.kotest:kotest-bom:5.6.2"))
+	testImplementation("io.kotest:kotest-runner-junit5") // JUnit 5 통합
+	testImplementation("io.kotest:kotest-assertions-core") // Assertions
+	testImplementation("io.kotest:kotest-property") // Property-based Testing
+	testImplementation("io.mockk:mockk:1.13.8")
 }
 
 dependencyManagement {
@@ -52,5 +58,9 @@ kotlin {
 }
 
 tasks.withType<Test> {
+	useJUnitPlatform()
+}
+
+tasks.test {
 	useJUnitPlatform()
 }
