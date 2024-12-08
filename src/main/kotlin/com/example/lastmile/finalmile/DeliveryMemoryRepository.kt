@@ -1,5 +1,8 @@
 package com.example.lastmile.finalmile
 
+import org.springframework.stereotype.Repository
+
+@Repository
 class DeliveryMemoryRepository : DeliveryRepository {
 
     private val deliveries = mutableMapOf<Long, Delivery>()
