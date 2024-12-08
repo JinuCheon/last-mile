@@ -19,3 +19,16 @@ class NotificationServiceTest {
         verify(notificationClient, times(1)).send(deliveryId)
     }
 }
+
+class NotificationService(notificationClient: NotificationClient?) {
+    fun sendDeliveryCompleteNotification(deliveryId: Long) {
+        TODO("Not yet implemented")
+    }
+
+}
+
+class NotificationClient {
+    fun send(deliveryId: Long) {
+        TODO("Not yet implemented")
+    }
+}
