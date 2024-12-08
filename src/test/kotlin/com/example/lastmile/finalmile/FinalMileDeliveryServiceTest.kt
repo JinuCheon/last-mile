@@ -1,6 +1,7 @@
 package com.example.lastmile.finalmile
 
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 
 class FinalMileDeliveryServiceTest : StringSpec({
 
@@ -13,6 +14,7 @@ class FinalMileDeliveryServiceTest : StringSpec({
 
         finalMileDeliveryService.complete(deliveryId)
 
-        deliveryRepository.findById(deliveryId)
+        val findById = deliveryRepository.findById(deliveryId)
+        findById.status shouldBe DeliveryStatus.DELIVERED
     }
 })
