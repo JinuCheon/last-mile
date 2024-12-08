@@ -19,15 +19,3 @@ class NotificationServiceTest {
         verify(notificationClient, times(1)).send(deliveryId)
     }
 }
-
-class NotificationService(private val notificationClient: NotificationClient) {
-    fun sendDeliveryCompleteNotification(deliveryId: Long) {
-        notificationClient.send(deliveryId)
-    }
-}
-
-class NotificationClient {
-    fun send(deliveryId: Long) {
-        println("send notification, deliveryId: [$deliveryId]")
-    }
-}
