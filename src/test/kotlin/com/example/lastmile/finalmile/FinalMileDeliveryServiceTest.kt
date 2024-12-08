@@ -5,16 +5,16 @@ import io.kotest.matchers.shouldBe
 
 class FinalMileDeliveryServiceTest : StringSpec({
 
-    val deliveryRepository = DeliveryMemoryRepository()
-    val finalMileDeliveryService = FinalMileDeliveryService(deliveryRepository)
+    val repository = DeliveryMemoryRepository()
+    val sut = FinalMileDeliveryService(repository)
 
     "고객의 집 앞에 배송이 완료된 경우, Delivery 의 status 를 배송완료 상태로 변경한다." {
         val deliveryId = 1L
-        deliveryRepository.save(Delivery(deliveryId, DeliveryStatus.PICKED_UP))
+        repository.save(Delivery(deliveryId, DeliveryStatus.PICKED_UP))
 
-        finalMileDeliveryService.complete(deliveryId)
+        sut.complete(deliveryId)
 
-        val findById = deliveryRepository.findById(deliveryId)
-        findById.status shouldBe DeliveryStatus.DELIVERED
+        val delivery = repository.findById(deliveryId)
+        delivery.status shouldBe DeliveryStatus.DELIVERED
     }
 })
