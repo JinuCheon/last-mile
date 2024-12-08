@@ -20,15 +20,14 @@ class NotificationServiceTest {
     }
 }
 
-class NotificationService(notificationClient: NotificationClient?) {
+class NotificationService(private val notificationClient: NotificationClient) {
     fun sendDeliveryCompleteNotification(deliveryId: Long) {
-        TODO("Not yet implemented")
+        notificationClient.send(deliveryId)
     }
-
 }
 
 class NotificationClient {
     fun send(deliveryId: Long) {
-        TODO("Not yet implemented")
+        println("send notification, deliveryId: [$deliveryId]")
     }
 }
